@@ -85,32 +85,9 @@ public class Main extends Application {
 		response.setSpacing(5);
 		
 		root.setPadding(new Insets(10, 10, 10, 10));
-		//root.setHgap(10);
-		//root.setVgap(12);
-		
-
-		
-//		final FileChooser fileChooser = new FileChooser();
-//		final Button openButton = new Button ("Open a File");
-//		openButton.setOnAction(
-//				new EventHAndler<ActionEvent>() {
-//					@Override
-//					public void handle(final ActionEvent e) {
-//						File file = fileChooser.showOpenDialog(primaryStage);
-//						if (file != null) {
-//							openFile(file);
-//						}
-//					}
-//				});
-		
-		
-		
-		
-		
 		
 		Text structureHeader = new Text();
 		structureHeader.setText("Enter the assignment structure: ");
-		//structureHeader.setFont(Font.font(null, FontWeight.BOLD, 36));
 		
 		
 		//Layout options for number of questions
@@ -243,28 +220,18 @@ public class Main extends Application {
 			int solutionsIndex = solutions.getValue().equals("Yes") ? 1 : 0;
 			int cheatingType = confirmed.isSelected() ? 1 : 0;
 			
-<<<<<<< HEAD
+
 			Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
 					sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
 			db.addCheatingData();
 			result.setText("Thank you for inserting your response. Your input will help promote honesty in academics.");
-=======
-			//Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
-					//sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
-			
-			//HueColorScaleExample colorRange = new HueColorScaleExample();
-			
-			System.out.println("This worked!");
-			System.out.println(assignmentType);
->>>>>>> 70262d902177b0e2d5e24d3c5be091c56908bb52
-			
 			
 		});
 		
-		structure.getChildren().addAll(structureHeading, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, suspected, confirmed, submit);
-		response.getChildren().addAll(purpose);
+		structure.getChildren().addAll(structureHeading, purpose, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, suspected, confirmed, submit);
+		//response.getChildren().addAll(purpose);
 		
-		Scene scene = new Scene(root, 300, 275);
+		Scene scene = new Scene(root, 400, 300);
 		primaryStage.setScene(scene);
 		
 		
