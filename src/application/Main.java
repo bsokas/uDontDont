@@ -2,10 +2,13 @@ package application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+
+import java.awt.Desktop;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.Clock;
@@ -39,8 +42,31 @@ import javafx.stage.Stage;
 
 
 
+
+////////////////////////////////////////////////////////////
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+
+
 public class Main extends Application {
 	
+	private Desktop desktop = Desktop.getDesktop();
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -61,6 +87,26 @@ public class Main extends Application {
 		root.setPadding(new Insets(10, 10, 10, 10));
 		//root.setHgap(10);
 		//root.setVgap(12);
+		
+
+		
+//		final FileChooser fileChooser = new FileChooser();
+//		final Button openButton = new Button ("Open a File");
+//		openButton.setOnAction(
+//				new EventHAndler<ActionEvent>() {
+//					@Override
+//					public void handle(final ActionEvent e) {
+//						File file = fileChooser.showOpenDialog(primaryStage);
+//						if (file != null) {
+//							openFile(file);
+//						}
+//					}
+//				});
+		
+		
+		
+		
+		
 		
 		Text structureHeader = new Text();
 		structureHeader.setText("Enter the assignment structure: ");
@@ -192,7 +238,7 @@ public class Main extends Application {
 			//Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
 					//sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
 			
-			HueColorScaleExample colorRange = new HueColorScaleExample();
+			//HueColorScaleExample colorRange = new HueColorScaleExample();
 			
 			System.out.println("This worked!");
 			System.out.println(assignmentType);
