@@ -51,13 +51,13 @@ public class Main extends Application {
 		BorderPane root = new BorderPane();
 		
 		VBox structure = new VBox();
-		VBox parameters = new VBox();
-		HBox results = new HBox();
+		VBox response = new VBox();
+		HBox colorScale = new HBox();
 		root.setLeft(structure);
-		root.setRight(parameters);
-		root.setBottom(results);
+		root.setRight(response);
+		root.setBottom(colorScale);
 		structure.setSpacing(5);
-		parameters.setSpacing(5);
+		response.setSpacing(5);
 		
 		root.setPadding(new Insets(10, 10, 10, 10));
 		//root.setHgap(10);
@@ -192,6 +192,8 @@ public class Main extends Application {
 			
 			//Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
 					//sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
+			
+			HueColorScaleExample colorRange = new HueColorScaleExample();
 			
 			System.out.println("This worked!");
 			System.out.println(assignmentType);
