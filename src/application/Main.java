@@ -22,11 +22,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -45,7 +40,6 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-	
 	
 	
 	@Override
@@ -79,11 +73,10 @@ public class Main extends Application {
 		
 		Label t = new Label("Assignment Type: ");
 		final ComboBox<String> typeOptions = new ComboBox<String>();
-		typeOptions.getItems().addAll("Homework", "Assessment (Quiz, Test, etc.", "Project");
+		typeOptions.getItems().addAll("Homework", "Assessment (Quiz, Test, etc.)", "Project");
 		typeOptions.getSelectionModel().selectFirst();
 		HBox type = new HBox();
 		type.getChildren().addAll(t, typeOptions);
-		
 		
 		Label mc = new Label("Multiple Choice:");
 		TextField multChoice = new TextField ();
@@ -133,7 +126,7 @@ public class Main extends Application {
 		q8.setSpacing(8);
 		q8.getChildren().addAll(srco, sourceOriginal);
 
-		Label d = new Label("Assignmet Difficulty: ");
+		Label d = new Label("Assignment Difficulty: ");
 		final ComboBox<String> difficulty = new ComboBox<String>();
 		difficulty.getItems().addAll("Easy", "Moderate", "Challenging", "Difficult", "Hellish");
 		difficulty.getSelectionModel().selectFirst();
@@ -157,23 +150,53 @@ public class Main extends Application {
 		q11.setSpacing(8);
 		q11.getChildren().addAll(sol, solutions);
 		
-		structure.getChildren().addAll(structureHeading, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11);
+		ToggleGroup toggle = new ToggleGroup();
+		RadioButton suspected = new RadioButton();
+		suspected.setText("Suspected");
+		RadioButton confirmed = new RadioButton();
+		confirmed.setText("Confirmed");
+		suspected.setToggleGroup(toggle);
+		confirmed.setToggleGroup(toggle);
 		
+		Button submit = new Button();
+		submit.setText("Submit");
 		
+		structure.getChildren().addAll(structureHeading, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, suspected, confirmed, submit);
 		
-		/*root.add(mc, 0, 0);
-		root.add(multChoice, 1, 0);
-		root.add(sa, 0, 1);
-		root.add(shortAnswer, 1, 1);
-		root.add(fr,  0, 2);
-		root.add(freeResponse, 1, 2);
-		root.add(o, 0, 3);
-		root.add(other, 1, 3);*/
-		
-		
-		//Assignment structure on the right
-		
-		
+		submit.setOnAction((click)->{
+			int assignmentType = 0;
+			if(typeOptions.getValue().equals("Homework")){assignmentType = 1;}
+			else if(typeOptions.getValue().contains("Assessment")){assignmentType = 2;}
+			else{assignmentType = 3;}
+			
+			int mcTotal = Integer.parseInt(multChoice.getText());
+			int saTotal = Integer.parseInt(shortAnswer.getText());
+			int frTotal = Integer.parseInt(freeResponse.getText());
+			int otherTotal = Integer.parseInt(other.getText());
+			int reuseTotal = Integer.parseInt(reused.getText());
+			int sourceTextIndex = Integer.parseInt(sourceText.getText());
+			int sourcePersonalIndex = Integer.parseInt(sourcePersonal.getText());
+			int sourceOriginalIndex = Integer.parseInt(sourceOriginal.getText());
+			
+			int difficultyIndex = 0;
+			if(difficulty.getValue().equals("Easy")){difficultyIndex = 1;} 
+			else if(difficulty.getValue().equals("Moderate")){difficultyIndex = 2;}
+			else if(difficulty.getValue().equals("Challenging")){difficultyIndex = 3;}
+			else if(difficulty.getValue().equals("Difficult")){difficultyIndex = 4;}
+			else{difficultyIndex = 5;}
+			
+			int ownershipIndex = ownership.getValue().equals("Yes") ? 1 : 0;
+			int solutionsIndex = solutions.getValue().equals("Yes") ? 1 : 0;
+			int cheatingType = confirmed.isSelected() ? 1 : 0;
+			
+			//Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
+					//sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
+			
+			System.out.println("This worked!");
+			System.out.println(assignmentType);
+			
+			
+		});
 		
 		Scene scene = new Scene(root, 300, 275);
 		primaryStage.setScene(scene);
