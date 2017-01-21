@@ -16,8 +16,8 @@ public class HueColorScaleExample extends Application{
 	private double MIN = 100;
 	private double MAX = 1000;
 	
-	private double GREEN_HUE = Color.GREEN.getHue();
-	private double RED_HUE = Color.RED.getHue();
+	private double BLUE_HUE = Color.GREEN.getHue();
+	private double RED_HUE = Color.ORANGE.getHue();
 	
 	@Override
 	public void start(Stage primaryStage){
@@ -36,7 +36,7 @@ public class HueColorScaleExample extends Application{
 			return Color.BLACK;
 		}
 		
-		double hue = GREEN_HUE + (GREEN_HUE + RED_HUE) * (value - MIN) / (MAX - MIN) ;
+		double hue = BLUE_HUE + (BLUE_HUE + RED_HUE) * (value - MIN) / (MAX - MIN) ;
 		return Color.hsb(hue,  1.0,  1.0);
 	}
 	

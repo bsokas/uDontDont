@@ -66,10 +66,18 @@ public class Main extends Application {
 		structureHeader.setText("Enter the assignment structure: ");
 		//structureHeader.setFont(Font.font(null, FontWeight.BOLD, 36));
 		
+		
 		//Layout options for number of questions
 		Text structureHeading = new Text();
 		structureHeading.setText("Assignment Parameters");
 		structureHeading.setTextAlignment(TextAlignment.CENTER);
+		
+		Label e = new Label("Purpose");
+		final ComboBox<String> goal = new ComboBox<String>();
+		goal.getItems().addAll("uDodo Cheating Assesment", "Cheating Entry");
+		goal.getSelectionModel().selectFirst();
+		HBox purpose = new HBox();
+		purpose.getChildren().addAll(e, goal);
 		
 		Label t = new Label("Assignment Type: ");
 		final ComboBox<String> typeOptions = new ComboBox<String>();
@@ -161,7 +169,7 @@ public class Main extends Application {
 		Button submit = new Button();
 		submit.setText("Submit");
 		
-		structure.getChildren().addAll(structureHeading, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, suspected, confirmed, submit);
+		Text result = new Text();
 		
 		submit.setOnAction((click)->{
 			int assignmentType = 0;
@@ -189,16 +197,16 @@ public class Main extends Application {
 			int solutionsIndex = solutions.getValue().equals("Yes") ? 1 : 0;
 			int cheatingType = confirmed.isSelected() ? 1 : 0;
 			
-			//Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
-					//sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
-			
-			HueColorScaleExample colorRange = new HueColorScaleExample();
-			
-			System.out.println("This worked!");
-			System.out.println(assignmentType);
+			Database db = new Database(assignmentType, mcTotal, saTotal, frTotal, otherTotal, reuseTotal, sourceTextIndex, sourcePersonalIndex,
+					sourceOriginalIndex, difficultyIndex, ownershipIndex, solutionsIndex, cheatingType);
+			db.addCheatingData();
+			result.setText("Thank you for inserting your response. Your input will help promote honesty in academics.");
 			
 			
 		});
+		
+		structure.getChildren().addAll(structureHeading, type, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, suspected, confirmed, submit);
+		response.getChildren().addAll(purpose);
 		
 		Scene scene = new Scene(root, 300, 275);
 		primaryStage.setScene(scene);
