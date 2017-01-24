@@ -20,11 +20,11 @@ public class Database {
 	// Database information and credentials
 	Connection conn = null;
 	Statement stmt = null;
-	private final String DB_URL = "cheating.czp0ytib1pp5.us-east-1.rds.amazonaws.com";
+	private final String DB_URL = "xxxx";
 	// DB_NAME is the name of the DB from the AWS field NOT the SQLDeveloper name
-	private final String DB_NAME = "ORCL";
-	private final String USER = "swap";
-	private final String PASSWORD = "cheating";
+	private final String DB_NAME = "xxxx";
+	private final String USER = "xxxx";
+	private final String PASSWORD = "xxxx";
 	
 	private int typeOfAssignment;
 	private int mcNumber;
